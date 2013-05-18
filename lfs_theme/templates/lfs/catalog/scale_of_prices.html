@@ -1,0 +1,44 @@
+{% load lfs_tags %}
+{% load  i18n %}
+<table class="scale-of-prices">
+    {% for price in prices %}
+        <tr>
+            <td>
+                {% if product.has_scale_of_prices %}
+                    {% trans "starting from" %} {{ price.amount }} {% if product.unit %}{{ product.unit }}{% endif %}
+                {% endif %}
+            </td>
+            {% if product.get_for_sale %}
+                <td class="for-sale-standard-price" nowwrap="nowwrap">
+                    <span class="for-sale-standard-price-value">
+                        {{ price.price|currency:request }}
+                    </span>
+                    * {% if product.price_unit %}/ {{ product.price_unit }}{% endif %}
+                </td>
+                <td class="for-sale-price" nowrap="nowrap">
+                    <span class="for-sale-price-value">
+                        {{ price.for_sale_price|currency:request }}
+                    </span>
+                    * {% if product.price_unit %}/ {{ product.price_unit }}{% endif %}
+                </td>
+            {% else %}
+                <td class="standard-price" nowrap="nowrap">
+                    <span class="standard-price-value">
+                        {{ price.price|currency:request }}
+                    </span>
+                    * {% if product.price_unit %}/ {{ product.price_unit }}{% endif %}
+                </td>
+            {% endif %}
+        </tr>
+    {% endfor %}
+    <tr>
+        <td class="price-disclaimer"
+            colspan="3">
+            {% if price_includes_tax %}
+                {% trans '*inc. VAT' %}
+            {% else  %}
+                {% trans '*exc. VAT' %}
+            {% endif %}
+        </td>
+    </tr>
+</table>

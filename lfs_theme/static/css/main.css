@@ -423,10 +423,20 @@ ul.breadcrumbs li {
     line-height: 1.5em;
 }
 
+.scale-of-prices {
+    float:right;
+}
+
+.scale-of-prices td {
+    padding: 0 2px;
+    vertical-align: middle;
+}
+
 .base-price,
 .price-disclaimer {
     font-size: 80%;
     color: #9f8d83;
+    text-align: right;
 }
 
 table.cp-properties {
@@ -703,8 +713,7 @@ ___________________________________________________________________________ */
 
 .product .for-sale-price,
 .product .standard-price {
-    font-size: 200%;
-    font-weight: bold;
+    font-size: 100%;
     margin: 0 0 2px 0;
 }
 

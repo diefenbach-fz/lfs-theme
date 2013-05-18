@@ -43,52 +43,7 @@
     {% average_for_instance product %}
 
     {# Prices #}
-    <div class="prices">
-        {% if for_sale %}
-            <div>
-                <span class="for-sale-standard-price" nowrap="nowrap">
-                    <span class="for-sale-standard-price-value">
-                        {{ product|get_standard_price_gross:request|currency:request }}
-                    </span>
-                    * {% if price_unit %}/ {{ price_unit }}{% endif %}</span>
-                <span class="for-sale-price" nowrap="nowrap">
-                    <span class="for-sale-price-value">
-                        {{ product|get_for_sale_price_gross:request|currency:request }}
-                    </span>
-                    * {% if price_unit %}/ {{ price_unit }}{% endif %}
-                </span>
-            </div>
-            {% if product.get_active_base_price %}
-                <div class="base-price">
-                    {{ product|get_base_price_gross:request|currency:request }} / {{ product.get_base_price_unit }}*
-                </div>
-            {% endif %}
-            <div class="price-disclaimer">
-                {% if price_includes_tax %}
-                    {% trans '*inc. VAT' %}
-                {% else  %}
-                    {% trans '*exc. VAT' %}
-                {% endif %}
-            </div>
-        {% else %}
-            <div class="standard-price"
-                  nowrap="nowrap">
-                  <span class="standard-price-value">{{ product|get_price_gross:request|currency:request }}</span>* {% if price_unit %}/ {{ price_unit }}{% endif %}
-            </div>
-            {% if product.get_active_base_price %}
-                <div class="base-price">
-                    {{ product|get_base_price_gross:request|currency:request }} / {{ product.get_base_price_unit }}*
-                </div>
-            {% endif %}
-            <div class="price-disclaimer">
-                {% if price_includes_tax %}
-                    {% trans '*inc. VAT' %}
-                {% else  %}
-                    {% trans '*exc. VAT' %}
-                {% endif %}
-            </div>
-        {% endif %}
-    </div>
+    {{ scale_of_prices }}
 
     {# Configurable Properties #}
     {% if product.is_configurable_product %}
