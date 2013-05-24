@@ -34,7 +34,7 @@
     <tr>
         <td class="price-disclaimer"
             colspan="3">
-            {% if price_includes_tax %}
+            {% if product.price_includes_tax %}
                 {% trans '*inc. VAT' %}
             {% else  %}
                 {% trans '*exc. VAT' %}
