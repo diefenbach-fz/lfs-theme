@@ -16,13 +16,13 @@
 
     <p>{% trans 'Soon you will get an order confirmation via E-Mail.' %}</p>
 
-    {% if order.get_pay_link %}
+    {% if pay_link and order.state != 1 %}
         <p>
             {% trans 'Please use the following link if you want to pay now' %}
         </p>
         <p>
             <a class="pay-link"
-               href="{{ order.get_pay_link }}">{% trans 'Pay' %}</a>
+               href="{{ pay_link }}">{% trans 'Pay' %}</a>
         </p>
         <p>
             {% trans 'You will find the same link on your order confirmation' %}
